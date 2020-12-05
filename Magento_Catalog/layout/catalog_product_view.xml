@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="product.info.addto" remove="true"/>
+
+        <referenceContainer name="product.info.form.content">
+            <block class="Magento\Framework\View\Element\Template" name="product.description.title" template="Magento_Catalog::product/view/title.phtml" before="-"/>
+
+            <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.brand"
+                   template="Magento_Catalog::product/view/attribute.phtml" group="detailed_info" before="product.info.addtocart">
+                <arguments>
+                    <argument name="at_call" xsi:type="string">getBrand</argument>
+                    <argument name="at_type" xsi:type="string">text</argument>
+                    <argument name="at_code" xsi:type="string">brand</argument>
+                    <argument name="css_class" xsi:type="string">brand-product</argument>
+                    <argument name="at_label" xsi:type="string">Vendor</argument>
+                    <argument name="title" translate="true" xsi:type="string">Vendor</argument>
+                    <argument name="add_attribute" xsi:type="string">itemprop="brand"</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+        <move element="product.info.overview" destination="product.info.form.content" after="product.info.brand"/>
+        <move element="product.info.stock.sku" destination="product.info.form.content" before="product.info.addtocart"/>
+        <move element="product.info.sku" destination="product.info.form.content" before="product.info.stock.sku"/>
+        <move element="product.info.brand" destination="product.info.form.content" before="product.info.stock.sku"/>
+
+        <referenceContainer name="product.info.main">
+            <block class="Magento\Framework\View\Element\Template" name="product.info.social" template="Magento_Catalog::product/view/social.phtml"/>
+            <referenceBlock name="product.info.description">
+                <arguments>
+                    <argument name="title" translate="true" xsi:type="string">Feature</argument>
+                    <argument name="sort_order" xsi:type="string">1</argument>
+                </arguments>
+            </referenceBlock>
+        </referenceContainer>
+
+        <referenceBlock name="product.info.details">
+            <block name="suits-tab" class="Magento\Catalog\Block\Product\View" template="Magento_Catalog::suits_tab.phtml" group="detailed_info">
+                <arguments>
+                    <argument name="title" translate="true" xsi:type="string">Suits</argument>
+                    <argument name="sort_order" xsi:type="string">20</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+        <referenceBlock name="product.info.details">
+            <block name="content-include-tab" class="Magento\Catalog\Block\Product\View" template="Magento_Catalog::content_include_tab.phtml" group="detailed_info">
+                <arguments>
+                    <argument name="title" translate="true" xsi:type="string">Content Includes</argument>
+                    <argument name="sort_order" xsi:type="string">21</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

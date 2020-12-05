@@ -1,0 +1,31 @@
+<div class="header_top_left">
+    <div class="hd-t-phone">
+        <i class="fas fa-phone"></i>
+
+        <?php
+        echo $block->getLayout()
+
+        ->createBlock('Magento\Cms\Block\Block')
+
+        ->setBlockId('top-header-phone')
+
+        ->toHtml();
+
+        ?>
+    </div>
+
+    <div class="hd-t-mail">
+        <i class="fas fa-envelope"></i>
+
+        <?php
+        echo $block->getLayout()
+
+        ->createBlock('Magento\Cms\Block\Block')
+
+        ->setBlockId('top-header-mail')
+
+        ->toHtml();
+
+        ?>
+    </div>
+</div>

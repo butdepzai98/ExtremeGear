@@ -1,0 +1,87 @@
+<?php 
+/*
+ * Magepow
+ * @category: Magepow
+ * @copyright: Copyright (c) 2014 Magepow (http://www.magepow.com/)
+ * @license: http://www.magepow.com/license-agreement
+ * @Author: DavidDuong
+ * @@Create Date: Wednesday, December 4th 2019, 8:43:54 pm
+ * @@Modified By: DavidDuong
+ * @@Modify Date: Friday, December 6th 2019, 3:41:40 pm
+ */ 
+
+$_product = $block->getProduct();
+
+$_mediaUrlHelper = $this->helper('\Extremegear\Customs\Helper\MediaUrl');
+$_mediaUrl = $_mediaUrlHelper->getMediaUrl();
+
+$prev_product = $block->getPrevProduct($_product);
+$next_product = $block->getNextProduct($_product);
+
+$current_category = $block->getCurrentCategory($_product);
+$name_category = $current_category->getName();
+$url_category = $current_category->getUrl();
+$enable = $block->getConfigure();
+?>
+<?php if($enable && ($prev_product || $next_product)): ?>
+    <div class="product-next-prev">
+        <?php if($next_product): ?>
+            <a class="product-next-link" title="<?php echo __('Next') ?>" href="<?php echo $next_product->getProductUrl(); ?>"><span>
+                Next Product
+            </span></a>
+
+            <?php 
+                $name_nextPrd = $next_product->getData('name');
+                $price_nextPrd = $next_product->getData('price');
+                $image_nextPrd = $next_product->getData('image');  
+            ?>
+
+            <div class="next-prd">
+                <?= "<img src='".$_mediaUrl.'catalog/product'.$image_nextPrd."' alt=''>" ?>
+
+                <div class="next-prd-content">
+                    <strong>
+                        <?= $name_nextPrd ?>
+                    </strong>
+                    <span>
+                        <?= $price_nextPrd ?>
+                    </span>
+                </div>
+            </div>
+            
+        <?php endif; ?>
+
+        <div class="nav-cate-icon">
+            <a href='<?= $url_category ?>'>
+                <div class="show">
+                    Category
+                </div>
+            </a>
+        </div>
+
+        <?php if($prev_product): ?>
+            <a class="product-prev-link" title="<?php echo __('Previous') ?>" href="<?php echo $prev_product->getProductUrl(); ?>"><span>
+                Previous Product
+            </span></a>
+
+            <?php 
+                $name_prevPrd = $prev_product->getData('name');
+                $price_prevPrd = $prev_product->getData('price');
+                $image_prevPrd = $prev_product->getData('image');
+            ?>
+
+            <div class="prev-prd">
+                <?= "<img src='".$_mediaUrl.'catalog/product'.$image_prevPrd."' alt=''>" ?>
+
+                <div class="prev-prd-content">
+                    <strong>
+                        <?= $name_prevPrd ?>
+                    </strong>
+                    <span>
+                        <?= $price_prevPrd ?>
+                    </span>
+                </div>
+            </div>
+        <?php endif; ?>
+    </div> 
+<?php endif; ?>

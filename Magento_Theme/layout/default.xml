@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+        <!-- <referenceBlock name="" remove="true" /> -->
+        <move element="navigation.sections" destination="header-wrapper"/>
+
+        <referenceContainer name="header.panel.wrapper">
+            <container name="panel-container" label="Panel Container" htmlTag="div" htmlClass="panel-container">
+                <block class="Magento\Framework\View\Element\Template" name="header_top_left" template="Magento_Theme::header_top_left.phtml"/>
+            </container>
+
+
+            <referenceContainer name="header.panel">
+                <referenceBlock name="store_language" remove="true" />
+                <referenceBlock name="my-account-link" remove="true" />
+                <referenceBlock name="register-link" remove="true" />
+                <referenceBlock name="wish-list-link" remove="true" />
+                <referenceBlock name="header" remove="true" /> 
+            </referenceContainer>
+        </referenceContainer>
+
+        <referenceBlock name="header.links">
+            <block class="Magento\Framework\View\Element\Template" name="header_top_search" template="Magento_Theme::header_top_search.phtml" before="-"/>
+        </referenceBlock> 
+
+        <move element="minicart" destination="header.panel" />
+        <!-- <move element="minicart" destination="header.links" after="-"/> -->
+        <move element="header.panel" destination="panel-container"/>
+
+        <referenceContainer name="footer-container">
+            <referenceContainer name="footer">
+                <!-- Hidden Copyright && footer_links -->
+                <referenceBlock name="copyright" remove="true" />
+                <referenceBlock name="report.bugs" remove="true" />
+                <referenceBlock name="footer_links" remove="true" />
+                <!-- /Hidden Copyright && footer_links -->
+
+                <container name="footer_link_1" label="Footer Link 1" htmlTag="div" htmlClass="links">
+                    <block class="Magento\Framework\View\Element\Template" name="footer-main-left" template="Magento_Theme::footer-main-left.phtml"/>
+                </container>
+
+				<container name="footer_link_2" label="Footer Link 2" htmlTag="div" htmlClass="links">
+                    <block class="Magento\Framework\View\Element\Template" name="footer-link-infomation" template="Magento_Theme::footer-link-infomation.phtml"/>
+				</container>
+
+                <container name="footer_link_3" label="Footer Link 3" htmlTag="div" htmlClass="links">
+                    <block class="Magento\Framework\View\Element\Template" name="footer-main-right" template="Magento_Theme::footer-main-right.phtml"/>
+				</container>
+            </referenceContainer>
+        </referenceContainer> 
+        
+        <referenceContainer name="before.body.end">
+            <container name="footer-bottom-cs" label="Footer Bottom Custom" htmlTag="div" htmlClass="footer-bottom copyright">
+                <container name="panel-container-footer" label="Panel Container" htmlTag="div" htmlClass="panel-container">
+                    <block class="Magento\Framework\View\Element\Template" name="copyright2" template="Magento_Theme::html/copyright.phtml"/>
+                    <block class="Magento\Framework\View\Element\Template" name="footer-bottom-right" template="Magento_Theme::footer-bottom-right.phtml"/>
+                </container>
+            </container>
+
+            
+        </referenceContainer>
+    </body>
+</page> 
